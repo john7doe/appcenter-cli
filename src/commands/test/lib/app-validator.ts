@@ -40,15 +40,6 @@ Your application needs to be compiled for release.");
   }
 
   public async usesSharedRuntime(): Promise<boolean> {
-    let zipArchive = await Pfs.readFile(this.appPath);
-    let zip = await new JsZip().loadAsync(zipArchive);
-
-    let entries = Object.getOwnPropertyNames(zip.files);
-
-    let monodroid = entries.some((e) => e.endsWith("libmonodroid.so"));
-    let hasRuntime = entries.some((e) => e.endsWith("mscorlib.dll"));
-    let hasEnterpriseBundle = entries.some((e) => e.endsWith("libmonodroid_bundle_app.so"));
-
-    return monodroid && !hasRuntime && !hasEnterpriseBundle;
+    return false;
   }
 }
